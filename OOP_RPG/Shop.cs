@@ -62,17 +62,11 @@ namespace OOP_RPG
             var KeyInput = Console.ReadLine();
 
             if (KeyInput == "1")
-            {
                 BuyItem();
-            }
             else if (KeyInput == "2")
-            {
                 BuyPotion();
-            }
             else if (KeyInput == "3")
-            {
                 SellItem();
-            }            
         }              
 
         public void BuyItem()
@@ -85,9 +79,7 @@ namespace OOP_RPG
             Console.WriteLine("----------------------------------------------------------------------------------------------");
    
             for (var i = 0; i < ShopItems.Count(); i++)
-            {
                 Console.WriteLine(String.Format("{0,3} | {1,-20} | {2,-7} | {3,-15} | {4,-7} |", (i + 1), ShopItems[i].Name, ShopItems[i].GetClass(), ShopItems[i].GetDescription(), ShopItems[i].Price + " Gold"));
-            }
 
             Console.WriteLine("----------------------------------------------------------------------------------------------");
             Console.WriteLine($"# You have {Hero.GoldCoin} Gold now!");
@@ -99,13 +91,9 @@ namespace OOP_RPG
             var item = ShopItems.ElementAtOrDefault(itemIndex);
 
             if (KeyInputNumber > ShopItems.Count() || KeyInputNumber <= 0)
-            {
                 Console.WriteLine("# Select the correct Item ID : ");                
-            }
             else
-            {
                 item = ShopItems.ElementAtOrDefault(itemIndex);
-            }
 
             if (item != null)
             {
@@ -117,9 +105,7 @@ namespace OOP_RPG
                                                  where heroItem.Name == item.Name
                                                   select heroItem).ToList();
                     if (heroBagDuplicateQuery.Any())
-                    {
                         Console.WriteLine("Sorry, You got this weapon already!");
-                    }
                     else
                     {
                         //pay for items amd add it to Herobag
@@ -129,11 +115,8 @@ namespace OOP_RPG
                     }                        
                 }
                 else
-                {
                     Console.WriteLine("You don't have enough gold coins.");
-                }
             }
-
             Console.WriteLine("----------------------------------------------------------------------------------------------");
         }
 
@@ -148,9 +131,7 @@ namespace OOP_RPG
             Console.WriteLine("----------------------------------------------------------------------------------------------");
 
             for(var i = 0; i < Potions.Count(); i++)
-            {
                 Console.WriteLine(String.Format("{0,3} | {1,-25} | {2,-7} | {3,-7} |", i+1, Potions[i].Name, Potions[i].HealthRestored + " HP", Potions[i].Price + " Gold"));
-            }
 
             Console.WriteLine("----------------------------------------------------------------------------------------------");
             Console.WriteLine($"# You have {Hero.GoldCoin} Gold now!");
@@ -166,9 +147,7 @@ namespace OOP_RPG
                 shopPotion = null;
             }
             else
-            {
                 shopPotion = Potions.ElementAtOrDefault(KeyInput - 1);
-            }
 
             if (shopPotion != null)
             {
@@ -181,14 +160,10 @@ namespace OOP_RPG
 
                 }
                 else
-                {
                     Console.WriteLine("Sorry, you don't have enough Gold !");
-                }
             }
             else
-            {
                 Console.WriteLine("Sorry,No result!");
-            }
             Console.WriteLine("----------------------------------------------------------------------------------------------");
         }
 
@@ -210,14 +185,10 @@ namespace OOP_RPG
             {
 
                 for (var i = 0; i < unEquippedHeroBag.Count(); i++)
-                {
                     Console.WriteLine(String.Format("{0,3} | {1,-20} | {2,-7} | {3,-15} | {4,-7} |", (i + 1), unEquippedHeroBag[i].Name, unEquippedHeroBag[i].GetClass(), unEquippedHeroBag[i].GetDescription(), unEquippedHeroBag[i].Price + " Gold"));
-                }
             }
             else
-            {
                 Console.WriteLine("You don't have any item");
-            }
             
             Console.WriteLine("----------------------------------------------------------------------------------------------");
             Console.WriteLine($"# You have {Hero.GoldCoin} Gold now!");
@@ -228,9 +199,7 @@ namespace OOP_RPG
 
 
             if (KeyInputNumber > unEquippedHeroBag.Count() || KeyInputNumber <= 0)
-            {
                 Console.WriteLine("# Select the corrent Item ID : ");
-            }
             else
             {                
                 var itemIndex = KeyInputNumber - 1;

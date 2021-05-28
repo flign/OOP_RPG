@@ -75,47 +75,27 @@ namespace OOP_RPG
                 input = Console.ReadLine();
 
                 if (input == "1")
-                {
                     this.Stats();
-                }
                 else if (input == "2")
-                {
                     this.Inventory();
-                }
                 else if (input == "3")
-                {
                     this.Fight();
-                }
                 else if (input == "4")
-                {
                     this.BuyItem();
-                }
                 else if (input == "5")
-                {
                     this.DisplayMonsterOfToday();
-                }
                 else if (input == "6")
-                {
                     this.DisplayQuest();
-                }
                 else if (input == "7")
-                {
                     this.DisplayAchivement();
-                }
                 else if (input == "8")
-                {
                     this.SaveGame();
-                }
 
                 //When Hero lose the game, exit
                 if (Hero.CurrentHP <= 0)
-                {
                     return;
-                }
             }
         }
-
-        //Display Hero Stats
         private void Stats()
         {
             Hero.ShowStats();
@@ -123,8 +103,6 @@ namespace OOP_RPG
             Console.WriteLine("Press any key to return to main menu.");
             Console.ReadKey();
         }
-
-        //Display Hero Inventory
         private void Inventory()
         {
             Hero.ShowInventory();
@@ -147,51 +125,34 @@ namespace OOP_RPG
                 var unEquippedWeapons = Hero.GetWeapons().Where(p => p != Hero.EquippedWeapon).ToList();
   
                 for (var i = 0; i < unEquippedWeapons.Count(); i++)
-                {
                     Console.WriteLine($"{i + 1} - {unEquippedWeapons[i].Name}");
-                }
-
                 Console.Write("Selet the weapon ID : ");
                 var index = Hero.GetUserInputNumber() - 1;
                 Hero.EquipWeapon(index);
 
-            }
-
-            //Unequip Weapon
+            }            //Unequip Weapon
             else if (KeyInput == "2")
-            {
                 Hero.UnEquipWeapon();
-            }
-
             //Equip Armor
             else if (KeyInput == "3")
             {  
                 var unEquippedArmors = Hero.GetArmors().Where(p => p != Hero.EquippedArmor).ToList();
                 for (var i = 0; i < unEquippedArmors.Count(); i++)
-                {
                     Console.WriteLine($"{i + 1} - {unEquippedArmors[i].Name}");
-                }
                 Console.Write("Selet the armor ID : ");
                 var index = Hero.GetUserInputNumber() - 1;
                 Hero.EquipArmor(index);
             }
-
             //Unequip Armor
             else if (KeyInput == "4")
-            {
                 Hero.UnEquipArmor();
-            }
-
             //Equip Shield
             else if (KeyInput == "5")
             {
                 var unEquippedShield = Hero.GetShield().Where(p => p != Hero.EquippedShield).ToList();
 
                 for (var i = 0; i < unEquippedShield.Count(); i++)
-                {
                     Console.WriteLine($"{i + 1} - {unEquippedShield[i].Name}");
-                }
-
                 Console.Write("Selet the shield ID : ");
                 var index = Hero.GetUserInputNumber() - 1;
                 Hero.EquipShield(index);
@@ -199,9 +160,7 @@ namespace OOP_RPG
 
             //Unequip Shield
             else if (KeyInput == "6")
-            {
                 Hero.UnEquipShield();
-            }
 
             Console.WriteLine("Press any key to return to main menu.");
             Console.ReadKey();
@@ -244,7 +203,6 @@ namespace OOP_RPG
             Console.WriteLine("Press any key to return to main menu.");
             Console.ReadKey();
         }
-
         private void SaveGame()
         {
             string heroData = Hero.GetHero();

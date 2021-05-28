@@ -63,47 +63,38 @@ namespace OOP_RPG
                 var input = Console.ReadLine();
 
                 if (input == "1")
-                {
                     HeroTurn();
-                }
                 else if (input == "2")
-                {
                     Hero.UsingPotion();
-                }
                 else if (input == "3")
                 {
                     RunAway();
-                    //After hero runaway frome the game get out of this while Loop                       
+                    //After hero runaway exit                    
                 }               
             }
 
-            //Check Hero currentHP to restart the game or go main menu 
             if ( Hero.CurrentHP <= 0)
-            {
-                Lose();
-            }                
+                Lose();              
         }
 
         private void HeroTurn()
         { 
-            //Calculator Damage 
+            //Dmg
             var DamageCompared = Hero.Strength - Enemy.Defense;
             var finalDamage = DamageCompared;
 
-            //Calculator Damage when hero equiped Weapon  
+            //Dmg when equiped Weapon  
             if (Hero.EquippedWeapon != null)
-            {
                DamageCompared += Hero.EquippedWeapon.Strength;
-            }    
                                              
-            //Hero Attack,  Hero Strength < Enemy Defense
+            //Att < Enemy Defense
             if (DamageCompared <= 0)
             {
                 finalDamage = 1;
                 Enemy.CurrentHP -= finalDamage;
             }
 
-            //Hero Hero Attack, Hero Strength > Enemy Defense
+            //Att > Enemy Defense
             else
             {
                 finalDamage = DamageCalculator(DamageCompared);
@@ -111,57 +102,42 @@ namespace OOP_RPG
             }
 
             Console.WriteLine("----------------------------------------------------------------------------------------------");
-
-            //Hero attack message
             Console.WriteLine($"# You attack enemy, enemy got {finalDamage} damage(s)! ");
 
             if (Enemy.CurrentHP <= 0)
-            {
                 Win();
-            }
             else
-            {
                 MonsterTurn();
-            }
         }
 
         private void MonsterTurn()
         {
-            //Calculator Damage 
             var DamageCompared = Enemy.Strength - Hero.Defense;
             var finalDamage = DamageCompared;
 
-            //Calculator Damage when hero equiped armor  
             if (Hero.EquippedArmor != null)
-            {
                 DamageCompared -= Hero.EquippedArmor.Defense;              
-            }
 
-            //Calculator Damage when hero equiped shield  
             if (Hero.EquippedShield != null)
             {
                 DamageCompared -= Hero.EquippedShield.Defense;
             }
 
-            //Enemy Attack,  Enemy Strength < Hero Defense
             if (DamageCompared <= 0)
             {
                 finalDamage = 1;
                 Hero.CurrentHP -= finalDamage;
             }            
             else
-            {//Enemy  Attack  Enemy Strength > Hero Defense
+            {
                 finalDamage = DamageCalculator(DamageCompared);               
                 Hero.CurrentHP -= finalDamage;
             }
 
             Console.WriteLine($"# '{Enemy.Name}' does {finalDamage} damage(s) to Hero !");
-
             Console.WriteLine("----------------------------------------------------------------------------------------------");
             if (Hero.CurrentHP <= 0)
-            {
                 Lose();
-            }
         }
 
         private void Win()
@@ -200,21 +176,13 @@ namespace OOP_RPG
             var getHeroGold = 0;
 
             if (Enemy.Diffculty == MonsterLevel.Easy)
-            {
                 getHeroGold = getRandomNumber.Next(1, 11);               
-            }
             else if (Enemy.Diffculty == MonsterLevel.Medium)
-            {
                 getHeroGold = getRandomNumber.Next(11, 21);        
-            }
             else if (Enemy.Diffculty == MonsterLevel.Hard)
-            {
                 getHeroGold = getRandomNumber.Next(21, 31);                
-            }
             else
-            {
                 throw new NotImplementedException("Diffculty not implement");
-            }
             
             return getHeroGold;           
         }
@@ -240,28 +208,20 @@ namespace OOP_RPG
 
             //Whether Hero equipped armor or not
             if  (Hero.EquippedArmor != null)
-            {
                 DamageCompared -= Hero.EquippedArmor.Defense;
-            }
 
             //Calculator Damage when hero equiped shield  
             if (Hero.EquippedShield != null)
-            {
                 DamageCompared -= Hero.EquippedShield.Defense;
-            }     
 
             if (DamageCompared > 0 )
-            {
                 finalDamage = DamageCalculator(DamageCompared);
-            }
             else
-            {
                 finalDamage = 1;
-            }
 
             Console.WriteLine("----------------------------------------------------------------------------------------------");
 
-            //When hero choose to run away, get a final damage or nothing base on random chance 
+            //When run away, get a final damage or nothing based on random%
             if (Enemy.Diffculty == MonsterLevel.Easy)
             {
                 //50% return true
@@ -274,16 +234,13 @@ namespace OOP_RPG
                     Console.WriteLine("Press any key to return to main menu.");
                     Console.ReadKey();
                     Enemy.CurrentHP = 0;
-
                 }
                 else
                 {
                     Console.WriteLine($"Sorry, you failed to run away, you got {finalDamage} damage(s)");
                     Hero.CurrentHP -= finalDamage;
                     MonsterTurn();
-
                 } 
-                
             }
             else if(Enemy.Diffculty == MonsterLevel.Medium)
             {
@@ -315,7 +272,6 @@ namespace OOP_RPG
                     Console.WriteLine("Press any key to return to main menu.");
                     Console.ReadKey();
                     Enemy.CurrentHP = 0;
-                    
                 }
                 else
                 {
@@ -326,10 +282,7 @@ namespace OOP_RPG
 
             }
             else
-            {
                 throw new NotImplementedException($"Diffculty not implement");
-            }
-
         }        
     }
 }

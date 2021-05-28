@@ -78,14 +78,10 @@ namespace OOP_RPG
             if (unEquippedWeapons.Count() != 0)
             {
                 for (var i = 0; i < unEquippedWeapons.Count(); i++)
-                {
                     Console.WriteLine(String.Format("{0,3} | {1,-20} | {2,-15} |", i + 1, unEquippedWeapons[i].Name, unEquippedWeapons[i].Strength + " Strength"));
-                }                               
             }
             else
-            {
                 Console.WriteLine(" Nothing ");
-            }
 
             //Display Armor Items
             Console.WriteLine("----------------------------------------------------------------------------------------------");
@@ -96,14 +92,10 @@ namespace OOP_RPG
             if (unEquippedArmors.Count() != 0 )
             {  
                 for(var i = 0; i < unEquippedArmors.Count(); i ++ )
-                {
                     Console.WriteLine(String.Format("{0,3} | {1,-20} | {2,-15} |", i+1, unEquippedArmors[i].Name, unEquippedArmors[i].Defense + " Defense"));
-                }
             }
             else
-            {
                 Console.WriteLine(" Nothing ");
-            }
 
             //Display Shield Items
             Console.WriteLine("----------------------------------------------------------------------------------------------");
@@ -113,16 +105,11 @@ namespace OOP_RPG
             var unEquippedShield = GetShield().Where(p => p != EquippedShield).ToList();
             if (unEquippedShield.Count() != 0)
             {
-                
                 for (var i = 0; i < unEquippedShield.Count(); i++)
-                {
                     Console.WriteLine(String.Format("{0,3} | {1,-20} | {2,-15} |", i + 1, unEquippedShield[i].Name, unEquippedShield[i].Defense + " Defense"));
-                }
             }
             else
-            {
                 Console.WriteLine(" Nothing ");
-            }
 
             //Current Equipped Items
             Console.WriteLine("----------------------------------------------------------------------------------------------");
@@ -147,11 +134,8 @@ namespace OOP_RPG
                 }
             }
             else 
-            {
                 Console.WriteLine(" Nothing ");
-                Console.WriteLine("----------------------------------------------------------------------------------------------");
-            }        
-           
+                Console.WriteLine("----------------------------------------------------------------------------------------------");     
         }
 
         public void EquipWeapon(int index)
@@ -163,18 +147,14 @@ namespace OOP_RPG
                 Console.WriteLine("----------------------------------------------------------------------------------------------"); 
 
                 if (index > unEquippedWeapon.Count() || index < 0 )
-                {
                     Console.WriteLine("Type corrent the weapon Id !");
-                }
                 else
                 {
                     var weapon = unEquippedWeapon[index];
                     this.EquippedWeapon = weapon;
                     Console.WriteLine($"'{unEquippedWeapon[index].Name}' is equipped ");
                 }
-          
                 Console.WriteLine("----------------------------------------------------------------------------------------------");
-        
             }
             else
             {
@@ -215,9 +195,7 @@ namespace OOP_RPG
                     Console.WriteLine($"'{unEquippedArmors[index].Name}' is equipped ");
                    
                 }
-                
                 Console.WriteLine("----------------------------------------------------------------------------------------------");
-               
             }
             else
             {
@@ -248,19 +226,14 @@ namespace OOP_RPG
                 Console.WriteLine("----------------------------------------------------------------------------------------------");
 
                 if (index > unEquippedShield.Count() || index < 0)
-                {
                     Console.WriteLine("Type corrent the shield Id !");
-                }
                 else
                 {
                     var shield = unEquippedShield[index];
                     this.EquippedShield = shield;
                     Console.WriteLine($"'{unEquippedShield[index].Name}' is equipped ");
-
                 }
-
                 Console.WriteLine("----------------------------------------------------------------------------------------------");
-
             }
             else
             {
@@ -291,15 +264,10 @@ namespace OOP_RPG
             
             while (inputnumberValid != true)
             {
-               
                 if (int.TryParse(Console.ReadLine(), out keyInputResult))
-                {
                     inputnumberValid = true;
-                }
                 else
-                {
                     Console.Write("Type the number only or '0' to exit : ");                   
-                }
             }
             return keyInputResult;
         }
@@ -307,7 +275,8 @@ namespace OOP_RPG
         public void DisplayPotion()
         {
             var potionQuery = (from potion in PotionsBag
-                               group potion by potion.Name into newGroup
+                               group potion by potion.Name
+                               into newGroup
                                select new
                                {
                                    Name = newGroup.Key,
@@ -316,15 +285,10 @@ namespace OOP_RPG
             if (potionQuery.Count() != 0)
             {
                 for (var i = 0; i < potionQuery.Count(); i++)
-                {
                     Console.WriteLine($" {i + 1}. {potionQuery[i].Name} ({potionQuery[i].Quantyty})");
-                }
             }
             else
-            {
-                Console.WriteLine($" [No potion yet]");
-            }
-            
+                Console.WriteLine($" [No potion yet]"); 
         }
 
         public void UsingPotion()
@@ -336,27 +300,17 @@ namespace OOP_RPG
                                    Name = newGroup.Key,
                                    Quantity = newGroup.Count()
                                }).ToList();
-
             Console.WriteLine("----------------------------------------------------------------------------------------------");
-
             if (potionQuery.Count() != 0)
             {
                     for (var i = 0; i < potionQuery.Count(); i++)
-                    {
-                    Console.WriteLine($" {i + 1}. {potionQuery[i].Name} ({potionQuery[i].Quantity})");
-                    }
-
+                        Console.WriteLine($" {i + 1}. {potionQuery[i].Name} ({potionQuery[i].Quantity})");
                 Console.WriteLine("----------------------------------------------------------------------------------------------");
                 Console.Write("Selet the potion to use: ");
                 var KeyInput = GetUserInputNumber();
 
-                //var pppotion = PotionsBag.ElementAtOrDefault(0);
-
                 if (KeyInput > potionQuery.Count() || KeyInput <= 0)
-                {
-                    Console.WriteLine("Type corrent the potion ID !");
-
-                }
+                    Console.WriteLine("Type in the correct potion ID!");
                 else
                 {
                     var usingPotionQuery = (from potion in PotionsBag
@@ -371,7 +325,6 @@ namespace OOP_RPG
                         Console.WriteLine($"You don't need to drink potion at this point, You wasted ({this.CurrentHP - this.OriginalHP})! ");
                         this.CurrentHP = this.OriginalHP;                        
                     }
-
                     PotionsBag.Remove(usingPotionQuery);
 
                     Console.WriteLine($"Drink '{potionQuery[KeyInput - 1].Name}' successfully!");

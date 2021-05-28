@@ -52,15 +52,10 @@ namespace OOP_RPG
             if (Quests.Count() != 0)
             {
                 for (var i = 0; i < Quests.Count(); i++)
-                {
                     Console.WriteLine(String.Format("{0,3} | {1,-30} | {2, 5} | {3, 11} |", (i + 1), Quests[i].Name, Quests[i].Point, (Quests[i].Complete ? "[Completed]" : "")));
-                }
             }
             else
-            {
                 Console.WriteLine($"Sorry, no quest now!");
-            }
-
             Console.WriteLine("----------------------------------------------------------------------------------------------");
         }
 
@@ -68,9 +63,7 @@ namespace OOP_RPG
         {
             var totalAchievementPoint = 0;
             for (var i = 0; i < Achievements.Count(); i++)
-            {
                 totalAchievementPoint += Achievements[i].Point;
-            }
             Console.Clear();
             Console.WriteLine("----------------------------------------------------------------------------------------------");
             Console.WriteLine($"****  Achievement (Total : {totalAchievementPoint} point(s))  ******");
@@ -81,14 +74,10 @@ namespace OOP_RPG
             if (Achievements.Count() != 0)
             {
                 for (var i = 0; i < Achievements.Count(); i++)
-                {
                     Console.WriteLine(String.Format("{0,3} | {1,-30} | {2,-7} | {3,-20} |", (i + 1), Achievements[i].Name, Achievements[i].Point, Achievements[i].Date.ToString("MMMM dd HH:mm tt")));
-                }
             }
             else
-            {
                 Console.WriteLine($"Sorry, you don't have any achivement");
-            }
             Console.WriteLine("----------------------------------------------------------------------------------------------");
         }
 
@@ -103,22 +92,16 @@ namespace OOP_RPG
                     var exceptDuplicateList = Kills.Select(x => x.Name).Distinct().ToList();
 
                     if (exceptDuplicateList.Count() == Quests[i].Kill && Quests[i].Complete == false)
-                    {
                         DisplayAchieveMessage(i);
-                    }
                 }
                 else
                 {
                     //Diaplay achievement a message. In case of Any Monster
                     if (Kills.Count() == Quests[i].Kill && Quests[i].Complete == false)
-                    {
                         DisplayAchieveMessage(i);
-                    }
                 }
             }
         }
-
-        //Diaplay achievement a message method
         public void DisplayAchieveMessage(int index)
         {
             Console.WriteLine("********************************************************************************************");
