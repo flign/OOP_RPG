@@ -17,7 +17,6 @@ namespace OOP_RPG
 
         public void Start()
         {
-
             string[] heroData = FileDatabase.ReadHero();
             if (heroData != null)
             {
@@ -43,16 +42,12 @@ namespace OOP_RPG
                 Console.WriteLine($"Hello, {Hero.Name}!");
                 Console.WriteLine("----------------------------------------------------------------------------------------------");
             }
-            
-
-
             Main();
         }
 
         //Display main menu
         private void Main()
         {
-            
             var input = "0";
 
             while (input != "9")
