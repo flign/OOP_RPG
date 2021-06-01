@@ -25,9 +25,9 @@ namespace OOP_RPG
                 Console.WriteLine("----------------------------------------------------------------------------------------------");
                 Console.WriteLine("*******  Welcome Hero!  *******");
                 Console.WriteLine("----------------------------------------------------------------------------------------------");
-                string[] achievementsData = FileDatabase.ReadAchievements();
-                if (achievementsData != null)
-                    AchievementManager.LoadAchievements(achievementsData);
+                //string[] achievementsData = FileDatabase.ReadAchievements();
+               // if (achievementsData != null)
+                   // AchievementManager.LoadAchievements(achievementsData);
             }
             else
             {

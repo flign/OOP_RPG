@@ -125,11 +125,11 @@ namespace OOP_RPG
 
             return achievementsData;
         }
-        public void LoadAchievements(string[] ach)
+        /*public void LoadAchievements(string[] ach)
         {
             List<Achievement> achievements = new List<Achievement>();
 
-            if (ach?[0] == string.Empty)
+            if (ach == string.Empty)
                 return;
 
             foreach (string eachAchievement in ach)
@@ -151,6 +151,6 @@ namespace OOP_RPG
                     Quests[5].Complete = true;
             }
             Achievements = achievements;
-        }
+        }*/
     }
 }
